@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-space-900 text-white font-['Space_Grotesk'];
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl;
+  }
+  
+  .glass-dark {
+    @apply bg-space-800/50 backdrop-blur-lg border border-white/10 rounded-2xl;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(166, 195, 217, 0.5);
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20;
+  }
+  
+  .gradient-text {
+    background: linear-gradient(135deg, #7BA4C0 0%, #9D4EDD 50%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .animate-stars {
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px);
+    background-size: 550px 550px;
+    animation: stars 4s linear infinite;
+  }
+  
+  @keyframes stars {
+    from { background-position: 0 0; }
+    to { background-position: 550px 550px; }
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0D17;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4A6FA5;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7BA4C0;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection colors */
+::selection {
+  background: #9D4EDD;
+  color: white;
+}
