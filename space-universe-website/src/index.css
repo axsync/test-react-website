@@ -4,25 +4,34 @@
 
 @layer base {
   body {
-    @apply bg-space-900 text-white font-['Space_Grotesk'];
+    @apply bg-black text-white font-['Space_Grotesk'];
+    overflow-x: hidden;
   }
 }
 
 @layer components {
   .glass {
-    @apply bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl;
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl;
   }
   
   .glass-dark {
-    @apply bg-space-800/50 backdrop-blur-lg border border-white/10 rounded-2xl;
+    @apply bg-black/40 backdrop-blur-2xl border border-white/5 rounded-3xl;
   }
   
   .text-glow {
-    text-shadow: 0 0 20px rgba(166, 195, 217, 0.5);
+    text-shadow: 0 0 30px rgba(166, 195, 217, 0.8), 0 0 60px rgba(166, 195, 217, 0.4);
+  }
+  
+  .text-glow-purple {
+    text-shadow: 0 0 30px rgba(157, 78, 221, 0.8), 0 0 60px rgba(157, 78, 221, 0.4);
+  }
+  
+  .text-glow-gold {
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.4);
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20;
+    @apply transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/30 hover:shadow-blue-500/20;
   }
   
   .gradient-text {
@@ -31,37 +40,116 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  
+  .gradient-text-gold {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 @layer utilities {
   .animate-stars {
-    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px);
-    background-size: 550px 550px;
-    animation: stars 4s linear infinite;
+    background-image: 
+      radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+      radial-gradient(white, rgba(255,255,255,.1) 0.5px, transparent 1px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    animation: stars 60s linear infinite;
+  }
+  
+  .animate-stars-fast {
+    background-image: 
+      radial-gradient(white, rgba(255,255,255,.3) 1px, transparent 2px),
+      radial-gradient(white, rgba(255,255,255,.2) 0.5px, transparent 1px);
+    background-size: 300px 300px, 200px 200px;
+    animation: stars 30s linear infinite;
+  }
+  
+  .animate-stars-slow {
+    background-image: 
+      radial-gradient(white, rgba(255,255,255,.25) 1.5px, transparent 2px),
+      radial-gradient(white, rgba(255,255,255,.15) 0.8px, transparent 1px);
+    background-size: 450px 450px, 300px 300px;
+    animation: stars 90s linear infinite;
   }
   
   @keyframes stars {
     from { background-position: 0 0; }
-    to { background-position: 550px 550px; }
+    to { background-position: 1000px 1000px; }
+  }
+  
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.8); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(157, 78, 221, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(157, 78, 221, 0.8), 0 0 60px rgba(157, 78, 221, 0.4); }
+  }
+  
+  @keyframes rotate-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @keyframes nebula-drift {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate(50px, -30px) scale(1.1); opacity: 0.8; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  }
+  
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  .animate-rotate-slow {
+    animation: rotate-slow 60s linear infinite;
+  }
+  
+  .animate-nebula {
+    animation: nebula-drift 20s ease-in-out infinite;
+  }
+  
+  .nebula-bg {
+    background: 
+      radial-gradient(ellipse at 20% 20%, rgba(157, 78, 221, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, rgba(66, 135, 245, 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 107, 107, 0.1) 0%, transparent 60%);
   }
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0B0D17;
+  background: #000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4A6FA5;
-  border-radius: 5px;
+  background: linear-gradient(180deg, #9D4EDD, #4A6FA5);
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #7BA4C0;
+  background: linear-gradient(180deg, #7B2CBF, #3A5A8C);
 }
 
 /* Smooth scrolling */
@@ -71,6 +159,50 @@ html {
 
 /* Selection colors */
 ::selection {
-  background: #9D4EDD;
+  background: linear-gradient(135deg, #9D4EDD, #4A6FA5);
   color: white;
+}
+
+/* 3D transform utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Glow effects */
+.glow-purple {
+  box-shadow: 0 0 30px rgba(157, 78, 221, 0.5), 0 0 60px rgba(157, 78, 221, 0.3);
+}
+
+.glow-blue {
+  box-shadow: 0 0 30px rgba(66, 135, 245, 0.5), 0 0 60px rgba(66, 135, 245, 0.3);
+}
+
+.glow-gold {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
+}
+
+/* Gradient overlays */
+.gradient-overlay {
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+}
+
+.gradient-overlay-top {
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+
+/* Noise texture for depth */
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
 }
