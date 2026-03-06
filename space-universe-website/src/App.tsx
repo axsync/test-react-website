@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-space-900">
+      <div className="min-h-screen bg-cosmic-gradient">
         <Navbar />
         <Routes>
           <Route path="/" element={
